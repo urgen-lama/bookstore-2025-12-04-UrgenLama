@@ -17,7 +17,6 @@ public class Piano extends MusicalInstrument{
 
     @Override
     public String toString() {
-        // Note: 'material' must be protected in MusicalInstrument to be used here
         return String.format("Piano [Brand: %s, Material: %s, Type: %s, Price: $%.2f]",
                 getProductId(),
                 material,
