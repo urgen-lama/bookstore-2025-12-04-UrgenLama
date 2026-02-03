@@ -17,7 +17,7 @@ public class Magazine extends Publication {
 
     @Override
     public void initialize() {
-        super.initialize(); // Title
+        super.initialize(); 
 
         System.out.println("Enter Order Qty:");
         this.orderQty = getInput(0);
@@ -25,12 +25,12 @@ public class Magazine extends Publication {
         System.out.println("Enter Current Issue Date (dd-MMM-yyyy):");
         this.currentIssue = getInput(new Date());
 
-        super.initPriceCopies(); // Copies, Price
+        super.initPriceCopies(); 
     }
 
     @Override
     public void edit() {
-        super.edit(); // Title, Price, Copies
+        super.edit(); 
 
         System.out.println("Edit Order Qty [" + this.orderQty + "]:");
         this.orderQty = getInput(this.orderQty);
