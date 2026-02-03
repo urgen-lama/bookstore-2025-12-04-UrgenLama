@@ -36,17 +36,12 @@ public abstract class Stationary extends Product {
 
     @Override
     public void initialize() {
-//        super.initialize(); // Critical: let Parent ask for Name/Price
         System.out.println("Enter Brand:");
-//        this.brand = getInput("Generic");
         setBrand(getInput("Generic"));
     }
     @Override
     public void edit() {
-        // 1. Edit Parent fields (Title, Price, Copies)
-//        super.edit();
 
-        // 2. Edit Self fields
         System.out.println("Edit Author [" + this.brand + "]:");
         this.brand = getInput(this.brand);
     }
