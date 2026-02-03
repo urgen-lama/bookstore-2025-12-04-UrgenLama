@@ -2,14 +2,14 @@ package csd214.bookstore.pojos;
 
 public abstract class MusicalInstrument extends Product {
     protected String material;
-    private double price; // Managed here to satisfy SaleableItem
+    private double price;
 
     @Override
     public double getPrice() { return price; }
 
     @Override
     public void initialize() {
-        super.initialize(); // Calls Product's logic
+        super.initialize();
         System.out.println("Enter Material (e.g., Wood, Brass):");
         this.material = getInput("Wood");
         System.out.println("Enter Price:");
@@ -20,7 +20,7 @@ public abstract class MusicalInstrument extends Product {
 
     @Override
     public void edit() {
-        super.edit(); // Calls Product's logic
+        super.edit();
         System.out.println("Current Material: " + material + ". New Material:");
         this.material = getInput(material);
         System.out.println("Current Price: " + price + ". New Price:");

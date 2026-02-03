@@ -20,23 +20,18 @@ public class Book extends Publication {
 
     @Override
     public void initialize() {
-        // 1. Initialize Parent (Title)
         super.initialize();
 
-        // 2. Initialize Self (Author)
         System.out.println("Enter Author:");
         this.author = getInput("Unknown Author");
 
-        // 3. Initialize Parent (Copies/Price)
         super.initPriceCopies();
     }
 
     @Override
     public void edit() {
-        // 1. Edit Parent fields (Title, Price, Copies)
         super.edit();
 
-        // 2. Edit Self fields
         System.out.println("Edit Author [" + this.author + "]:");
         this.author = getInput(this.author);
     }

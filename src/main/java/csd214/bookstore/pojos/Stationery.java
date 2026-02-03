@@ -2,7 +2,7 @@ package csd214.bookstore.pojos;
 
 public abstract class Stationery extends Product {
     private String brand;
-    private double price; // Added here since Product doesn't have it
+    private double price;
 
     public String getBrand() { return brand; }
     public void setBrand(String brand) { this.brand = brand; }
@@ -14,7 +14,6 @@ public abstract class Stationery extends Product {
 
     @Override
     public void initialize() {
-        // REMOVE super.initialize(); <-- Delete this line
 
         System.out.println("Enter Brand:");
         this.brand = getInput("Generic");

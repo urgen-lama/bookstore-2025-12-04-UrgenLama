@@ -1,96 +1,37 @@
 classDiagram
-%% Core Hierarchy
+%% Relationships
     Editable <|-- Product
     Product <|-- Ticket
     Product <|-- Publication
     Product <|-- Stationery
     Product <|-- MusicalInstrument
-
-%% Publication Sub-hierarchy
     Publication <|-- Book
     Publication <|-- Magazine
     Magazine <|-- DiscMag
-
-%% Stationery Sub-hierarchy
-    Stationery <|-- Pen
-    Stationery <|-- Notebook
-
-%% Interfaces and Associations
     SaleableItem <|.. Product
     Serializable <|.. Product
     Product <-- CashTill
 
-    class Product{
-        <<abstract>>
-        -String productId
-    }
-
-    class Editable{
+    class Editable {
         <<abstract>>
         -Scanner input
+        +String getInput(String)
+        +int getInput(int)
+        +double getInput(double)
+        +boolean getInput(boolean)
+        +Date getInput(Date)
+        +Enum getInput(Enum)
         +edit()*
         +initialize()*
     }
 
-    class Ticket{
-        +description
-        +price
-        +sellItem()
-    }
-
-    class Publication{
+    class Product {
         <<abstract>>
-        -String title
-        -double price
-        -int copies
-        +getPrice()
-    }
-
-    class Book{
-        -String author
-        +sellItem()
-    }
-
-    class Magazine{
-        -int orderQty
-        -Date currentIssue
-    }
-
-    class DiscMag{
-        -boolean hasDisc
-    }
-
-    class Stationery{
-        <<abstract>>
-        -String brand
-        -double price
-        +getPrice()
-        +edit()
+        -String productId
+        +getProductId() String
+        +setProductId(String)
         +initialize()
-    }
-
-    class Pen{
-        -String inkColor
-        +sellItem()
-    }
-
-    class Notebook{
-        -int numberOfPages
-        +sellItem()
-    }
-
-    class MusicalInstrument{
-        <<abstract>>
-        #String material
-        -double price
-        +getPrice()
         +edit()
-        +initialize()
-    }
-
-    class CashTill{
-        -double runningTotal
-        +sellItem(SaleableItem item)
     }
 
     class SaleableItem {
@@ -101,4 +42,85 @@ classDiagram
 
     class Serializable {
         <<interface>>
+    }
+
+    class Ticket {
+        +String description
+        +double price
+        +sellItem()
+        +getPrice()
+        +initialize()
+        +edit()
+        +toString()
+    }
+
+    class Publication {
+        <<abstract>>
+        -String title
+        -double price
+        -int copies
+        +getPrice()
+        +Publication()
+        +Publication(String, double, int)
+        +toString()
+        +equals()
+        +hashCode()
+    }
+
+    class Book {
+        -String author
+        +Book()
+        +Book(String)
+        +Book(String, String, double, int)
+        +initialize()
+        +edit()
+        +sellItem()
+        +toString()
+    }
+
+    class Magazine {
+        -int orderQty
+        -Date currentIssue
+        +Magazine()
+        +Magazine(int, Date, String, double, int)
+        +initialize()
+        +edit()
+        +sellItem()
+        +toString()
+    }
+
+    class DiscMag {
+        -boolean hasDisc
+        +DiscMag()
+        +DiscMag(boolean, int, Date, String, double, int)
+        +initialize()
+        +edit()
+        +sellItem()
+    }
+
+    class Stationery {
+        <<abstract>>
+        -String brand
+        -double price
+        +getBrand() String
+        +setBrand(String)
+        +getPrice() double
+        +initialize()
+        +edit()
+    }
+
+    class MusicalInstrument {
+        <<abstract>>
+        #String material
+        -double price
+        +getPrice() double
+        +initialize()
+        +edit()
+    }
+
+    class CashTill {
+        -double runningTotal
+        +CashTill()
+        +showTotal()
+        +sellItem(SaleableItem item)
     }
