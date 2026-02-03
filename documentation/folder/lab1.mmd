@@ -1,0 +1,104 @@
+classDiagram
+%% Core Hierarchy
+    Editable <|-- Product
+    Product <|-- Ticket
+    Product <|-- Publication
+    Product <|-- Stationery
+    Product <|-- MusicalInstrument
+
+%% Publication Sub-hierarchy
+    Publication <|-- Book
+    Publication <|-- Magazine
+    Magazine <|-- DiscMag
+
+%% Stationery Sub-hierarchy
+    Stationery <|-- Pen
+    Stationery <|-- Notebook
+
+%% Interfaces and Associations
+    SaleableItem <|.. Product
+    Serializable <|.. Product
+    Product <-- CashTill
+
+    class Product{
+        <<abstract>>
+        -String productId
+    }
+
+    class Editable{
+        <<abstract>>
+        -Scanner input
+        +edit()*
+        +initialize()*
+    }
+
+    class Ticket{
+        +description
+        +price
+        +sellItem()
+    }
+
+    class Publication{
+        <<abstract>>
+        -String title
+        -double price
+        -int copies
+        +getPrice()
+    }
+
+    class Book{
+        -String author
+        +sellItem()
+    }
+
+    class Magazine{
+        -int orderQty
+        -Date currentIssue
+    }
+
+    class DiscMag{
+        -boolean hasDisc
+    }
+
+    class Stationery{
+        <<abstract>>
+        -String brand
+        -double price
+        +getPrice()
+        +edit()
+        +initialize()
+    }
+
+    class Pen{
+        -String inkColor
+        +sellItem()
+    }
+
+    class Notebook{
+        -int numberOfPages
+        +sellItem()
+    }
+
+    class MusicalInstrument{
+        <<abstract>>
+        #String material
+        -double price
+        +getPrice()
+        +edit()
+        +initialize()
+    }
+
+    class CashTill{
+        -double runningTotal
+        +sellItem(SaleableItem item)
+    }
+
+    class SaleableItem {
+        <<interface>>
+        +sellItem()
+        +getPrice()
+    }
+
+    class Serializable {
+        <<interface>>
+    }
