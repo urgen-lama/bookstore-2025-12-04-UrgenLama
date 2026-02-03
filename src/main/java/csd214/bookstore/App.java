@@ -13,10 +13,15 @@ public class App {
     private Scanner input = new Scanner(System.in);
 
     public void run() {
+
         populate();
         int choice = 0;
         while (choice != 99) {
+<<<<<<< HEAD
             System.out.println("\nUrgen's Superstore");
+=======
+            System.out.println("\n***********Fred Carella's Superstore************");
+>>>>>>> e8a9a38a11bd886b638b8a7189c38d6fec624370
             System.out.println(" 1. Add Items");
             System.out.println(" 2. Edit Items");
             System.out.println(" 3. Delete Items");
@@ -68,10 +73,14 @@ public class App {
             System.out.println("2. Add Magazine");
             System.out.println("3. Add DiscMag");
             System.out.println("4. Add Ticket");
+<<<<<<< HEAD
             System.out.println("5. Add Pen");
             System.out.println("6. Add Notebook");
             System.out.println("7. Add Guitar");
             System.out.println("8. Add Piano");
+=======
+            System.out.println("5. Add Widget");
+>>>>>>> e8a9a38a11bd886b638b8a7189c38d6fec624370
             System.out.println("99. Exit");
 
             try {
@@ -90,10 +99,14 @@ public class App {
                 case 2: item = new Magazine(); break;
                 case 3: item = new DiscMag(); break;
                 case 4: item = new Ticket(); break;
+<<<<<<< HEAD
                 case 5: item = new Pen(); break;
                 case 6: item = new Notebook(); break;
                 case 7: item = new Guitar(); break;
                 case 8: item = new Piano(); break;
+=======
+                case 5: item = new Widget(); break;
+>>>>>>> e8a9a38a11bd886b638b8a7189c38d6fec624370
                 default: System.out.println("Invalid selection."); continue;
             }
 
@@ -119,8 +132,12 @@ public class App {
             System.out.println("3. Magazines");
             System.out.println("4. DiscMags");
             System.out.println("5. Tickets");
+<<<<<<< HEAD
             System.out.println("6. Stationery");
             System.out.println("7. Musical Instrument");
+=======
+            System.out.println("6. Widgets");
+>>>>>>> e8a9a38a11bd886b638b8a7189c38d6fec624370
             System.out.println("99. Exit");
 
             try {
@@ -140,8 +157,12 @@ public class App {
                 case 3: filter = Magazine.class; break;
                 case 4: filter = DiscMag.class; break;
                 case 5: filter = Ticket.class; break;
+<<<<<<< HEAD
                 case 6: filter = Stationery.class; break;
                 case 7: filter = MusicalInstrument.class; break;
+=======
+                case 6: filter = Widget.class; break;
+>>>>>>> e8a9a38a11bd886b638b8a7189c38d6fec624370
                 default: System.out.println("Invalid selection."); continue;
             }
 
