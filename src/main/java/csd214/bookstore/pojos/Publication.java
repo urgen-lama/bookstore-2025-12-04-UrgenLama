@@ -19,7 +19,7 @@ public abstract class Publication extends Product {
     @Override
     public void initialize() {
         System.out.println("Enter Title:");
-        this.title = getInput("Available Title"); // "Available Title" is default if empty
+        this.title = getInput("Available Title"); 
     }
 
     protected void initPriceCopies() {
