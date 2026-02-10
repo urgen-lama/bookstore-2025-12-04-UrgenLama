@@ -1,7 +1,5 @@
 package csd214.bookstore.pojos;
 
-import java.util.Scanner;
-
 public class Ticket extends Product {
     public String description = "";
     public double price = 0.0;
@@ -17,21 +15,21 @@ public class Ticket extends Product {
     }
 
     @Override
-    public void initialize(Scanner input) {
+    public void initialize() {
         System.out.println("Enter Description:");
-        this.description = getInput(input, "Ticket");
+        this.description = getInput("Ticket");
 
         System.out.println("Enter Price:");
-        this.price = getInput(input, 0.0);
+        this.price = getInput(0.0);
     }
 
     @Override
-    public void edit(Scanner input) {
+    public void edit() {
         System.out.println("Edit Description [" + this.description + "]:");
-        this.description = getInput(input, this.description);
+        this.description = getInput(this.description);
 
         System.out.println("Edit Price [" + this.price + "]:");
-        this.price = getInput(input, this.price);
+        this.price = getInput(this.price);
     }
 
     @Override

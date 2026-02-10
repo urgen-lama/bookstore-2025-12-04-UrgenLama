@@ -13,10 +13,11 @@ public class App {
     private Scanner input = new Scanner(System.in);
 
     public void run() {
+
         populate();
         int choice = 0;
         while (choice != 99) {
-            System.out.println("\n***********************");
+            System.out.println("\nUrgen's Superstore");
             System.out.println(" 1. Add Items");
             System.out.println(" 2. Edit Items");
             System.out.println(" 3. Delete Items");
@@ -68,6 +69,11 @@ public class App {
             System.out.println("2. Add Magazine");
             System.out.println("3. Add DiscMag");
             System.out.println("4. Add Ticket");
+            System.out.println("5. Add Pen");
+            System.out.println("6. Add Notebook");
+            System.out.println("7. Add Guitar");
+            System.out.println("8. Add Piano");
+            System.out.println("5. Add Widget");
             System.out.println("99. Exit");
 
             try {
@@ -86,14 +92,16 @@ public class App {
                 case 2: item = new Magazine(); break;
                 case 3: item = new DiscMag(); break;
                 case 4: item = new Ticket(); break;
+                case 5: item = new Pen(); break;
+                case 6: item = new Notebook(); break;
+                case 7: item = new Guitar(); break;
+                case 8: item = new Piano(); break;
                 default: System.out.println("Invalid selection."); continue;
             }
 
             if(item instanceof Editable) {
-                // PASS THE SHARED SCANNER
-                ((Editable)item).initialize(this.input);
+                ((Editable)item).initialize();
             }
-
             addItem(item);
         }
     }
@@ -113,6 +121,9 @@ public class App {
             System.out.println("3. Magazines");
             System.out.println("4. DiscMags");
             System.out.println("5. Tickets");
+            System.out.println("6. Stationery");
+            System.out.println("7. Musical Instrument");
+            System.out.println("6. Widgets");
             System.out.println("99. Exit");
 
             try {
@@ -132,6 +143,8 @@ public class App {
                 case 3: filter = Magazine.class; break;
                 case 4: filter = DiscMag.class; break;
                 case 5: filter = Ticket.class; break;
+                case 6: filter = Stationery.class; break;
+                case 7: filter = MusicalInstrument.class; break;
                 default: System.out.println("Invalid selection."); continue;
             }
 
@@ -180,8 +193,7 @@ public class App {
     }
 
     public void editItem(Editable item) {
-        // PASS THE SHARED SCANNER
-        item.edit(this.input);
+        item.edit();
     }
 
     public void deleteItem() {

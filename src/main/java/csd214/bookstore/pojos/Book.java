@@ -18,25 +18,24 @@ public class Book extends Publication {
         super(title, price, copies);
         this.author = author;
     }
+
     @Override
     public void initialize(Scanner input) {
-        // Pass scanner up to parent
-        super.initialize(input);
+        super.initialize();
 
         System.out.println("Enter Author:");
-        this.author = getInput(input, "Unknown Author");
+        this.author = getInput("Unknown Author");
 
-        // Pass scanner to helper
-        super.initPriceCopies(input);
+        super.initPriceCopies();
     }
 
     @Override
-    public void edit(Scanner input) {
-        super.edit(input);
-        System.out.println("Edit Author [" + this.author + "]:");
-        this.author = getInput(input, this.author);
-    }
+    public void edit() {
+        super.edit();
 
+        System.out.println("Edit Author [" + this.author + "]:");
+        this.author = getInput(this.author);
+    }
 
     @Override
     public void sellItem() {

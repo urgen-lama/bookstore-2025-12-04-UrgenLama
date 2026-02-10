@@ -2,8 +2,6 @@ package csd214.bookstore.pojos;
 
 import java.io.Serializable;
 
-// Marked abstract because it implements SaleableItem but doesn't implement getPrice()
-// (Price is defined in children: Ticket and Publication)
 public abstract class Product extends Editable implements SaleableItem, Serializable {
     private String productId;
 
@@ -13,5 +11,17 @@ public abstract class Product extends Editable implements SaleableItem, Serializ
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public void initialize() {
+        System.out.println("Enter Brand");
+        this.productId = getInput("Generic");
+    }
+
+    @Override
+    public void edit() {
+        System.out.println("Current Brand: " + this.productId);
+        this.productId = getInput(this.productId);
+
     }
 }
