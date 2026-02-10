@@ -1,6 +1,7 @@
 package csd214.bookstore.pojos;
 
 import java.util.Date;
+import java.util.Scanner;
 
 public class DiscMag extends Magazine {
     private boolean hasDisc;
@@ -14,7 +15,7 @@ public class DiscMag extends Magazine {
     }
 
     @Override
-    public void initialize() {
+    public void initialize(Scanner input) {
         super.initialize(); // Title, Qty, Date, Copies, Price
 
         System.out.println("Has Disc? (true/false):");

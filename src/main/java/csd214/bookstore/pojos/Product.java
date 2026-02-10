@@ -12,16 +12,4 @@ public abstract class Product extends Editable implements SaleableItem, Serializ
     public void setProductId(String productId) {
         this.productId = productId;
     }
-
-    public void initialize() {
-        System.out.println("Enter Brand");
-        this.productId = getInput("Generic");
-    }
-
-    @Override
-    public void edit() {
-        System.out.println("Current Brand: " + this.productId);
-        this.productId = getInput(this.productId);
-
-    }
 }

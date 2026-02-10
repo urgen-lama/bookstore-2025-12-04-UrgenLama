@@ -1,12 +1,10 @@
 package csd214.bookstore.pojos;
 
-import java.util.Scanner;
-
 public class Pen extends Stationery{
     private String color;
 
     @Override
-    public void initialize(Scanner input) {
+    public void initialize() {
         super.initialize();
         System.out.println("Enter Color:");
         this.color = getInput("Blue");
@@ -31,4 +29,3 @@ public class Pen extends Stationery{
                 getBrand(), color, getPrice());
     }
 }
-
