@@ -1,6 +1,6 @@
 package csd214.bookstore.pojos;
 
-import java.util.Scanner;
+import java.util.Objects;
 
 public abstract class MusicalInstrument extends Product {
     protected String material;
@@ -8,6 +8,8 @@ public abstract class MusicalInstrument extends Product {
 
     @Override
     public double getPrice() { return price; }
+
+    public void setPrice(double price) { this.price = price; }
 
     @Override
     public void initialize() {
@@ -31,5 +33,15 @@ public abstract class MusicalInstrument extends Product {
         } catch (NumberFormatException e) { }
     }
 
-    public abstract void initialize(Scanner input);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MusicalInstrument that)) return false;
+        return Double.compare(that.price, price) == 0 && Objects.equals(getProductId(), that.getProductId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getProductId(), price);
+    }
 }

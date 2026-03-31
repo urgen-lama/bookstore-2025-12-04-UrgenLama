@@ -1,15 +1,25 @@
 package csd214.bookstore.pojos;
 
-import java.io.Serializable;
-
-public abstract class Product extends Editable implements SaleableItem, Serializable {
+public abstract class Product extends Editable {
     private String productId;
+    private double price;
 
-    public String getProductId() {
-        return productId;
+    public String getProductId() { return productId; }
+    public void setProductId(String productId) { this.productId = productId; }
+
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    @Override
+    public void initialize() {
+        System.out.println("Enter Product ID:");
+        this.productId = getInput("Unknown");
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    @Override
+    public void edit() {
+        System.out.println("Current ID: " + productId + ". New ID:");
+        this.productId = getInput(productId);
     }
 }

@@ -3,11 +3,13 @@ package csd214.bookstore.pojos;
 import java.util.Date;
 
 public class Magazine extends Publication {
-    private int orderQty = 0;
-    private Date currentIssue = new Date();
+    private int orderQty;
+    private Date currentIssue;
 
     public Magazine() {
+        super();
     }
+
 
     public Magazine(int orderQty, Date currentIssue, String title, double price, int copies) {
         super(title, price, copies);
@@ -18,40 +20,32 @@ public class Magazine extends Publication {
     @Override
     public void initialize() {
         super.initialize();
-
-        System.out.println("Enter Order Qty:");
+        System.out.println("Enter Order Quantity:");
         this.orderQty = getInput(0);
-
-        System.out.println("Enter Current Issue Date (dd-MMM-yyyy):");
+        System.out.println("Enter Date (dd-MMM-yyyy):");
         this.currentIssue = getInput(new Date());
-
-        super.initPriceCopies();
     }
 
     @Override
     public void edit() {
         super.edit();
-
-        System.out.println("Edit Order Qty [" + this.orderQty + "]:");
-        this.orderQty = getInput(this.orderQty);
-
-        System.out.println("Edit Issue Date [" + this.currentIssue + "]:");
-        this.currentIssue = getInput(this.currentIssue);
+        System.out.println("Current Order Qty: " + orderQty + ". New Qty:");
+        this.orderQty = getInput(orderQty);
+        System.out.println("Current Date: " + currentIssue + ". New Date:");
+        this.currentIssue = getInput(currentIssue);
     }
 
     @Override
     public void sellItem() {
-        System.out.println("Selling Magazine: " + getTitle());
-        setCopies(getCopies() - 1);
+        if (getCopies() > 0) {
+            setCopies(getCopies() - 1);
+            System.out.println("Sold Magazine: " + getTitle());
+        }
     }
+
 
     public int getOrderQty() { return orderQty; }
     public void setOrderQty(int o) { this.orderQty = o; }
     public Date getCurrentIssue() { return currentIssue; }
     public void setCurrentIssue(Date d) { this.currentIssue = d; }
-
-    @Override
-    public String toString() {
-        return "Magazine{orderQty=" + orderQty + ", issue=" + currentIssue + ", " + super.toString() + "}";
-    }
 }

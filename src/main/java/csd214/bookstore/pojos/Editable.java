@@ -1,126 +1,76 @@
 package csd214.bookstore.pojos;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
-/**
- * @author fcarella
- */
-
-
 public abstract class Editable implements Serializable, SaleableItem {
-//    private Long id;
-
-
-    public Scanner input = new Scanner(System.in);
+    protected Scanner input = new Scanner(System.in);
 
     public abstract void edit();
     public abstract void initialize();
-    // setInput, setOutput are used when unit testing
-    // see https://stackoverflow.com/questions/1647907/junit-how-to-simulate-system-in-testing
-    public void setSystemInput(ByteArrayInputStream testIn){
-        System.setIn(testIn);
-        input=new Scanner(System.in);
-    }
-    public void setSystemOutput(ByteArrayOutputStream testOut){
-        System.setOut(new PrintStream(testOut));
+
+    public void setScanner(Scanner scanner) {
+        this.input = scanner;
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
-
-    public String getInput(String s) {
-        String ss = input.nextLine();
-        if (ss.trim().isEmpty()) {
-            return s;
-        }
-        Scanner in2 = new Scanner(ss);
-        return in2.nextLine();
-    }
-
-    public int getInput(int i) {
+    public String getInput(String defaultValue) {
+        if (!input.hasNextLine()) return defaultValue;
         String s = input.nextLine();
-        if (s.trim().isEmpty()) {
-            return i;
-        }
-        Scanner in2 = new Scanner(s);
-        return in2.nextInt();
+        return s.trim().isEmpty() ? defaultValue : s;
     }
 
-    public double getInput(double i) {
-        String s = input.nextLine();
-        if (s.trim().isEmpty()) {
-            return i;
-        }
-        Scanner in2 = new Scanner(s);
-        return in2.nextDouble();
-    }
-    public boolean getInput(boolean b) {
-        String s = input.nextLine();
-        if (s.trim().isEmpty()) {
-            return b;
-        }
-        Scanner in2 = new Scanner(s);
-        return in2.nextBoolean();
+    public int getInput(int defaultValue) {
+        try {
+            if (!input.hasNextLine()) return defaultValue;
+            String s = input.nextLine().trim();
+            return s.isEmpty() ? defaultValue : Integer.parseInt(s);
+        } catch (Exception e) { return defaultValue; }
     }
 
-    public Date getInput(Date date) {
-        String s = input.nextLine();
-        if (s.trim().isEmpty()) {
-            return date;
-        }
-        Scanner in2 = new Scanner(s);
-//        String dateInString = "7-Jun-2013";
-        String dateInString = in2.nextLine();
-        // see https://www.baeldung.com/java-string-to-date
+    public double getInput(double defaultValue) {
+        try {
+            if (!input.hasNextLine()) return defaultValue;
+            String s = input.nextLine().trim();
+            return s.isEmpty() ? defaultValue : Double.parseDouble(s);
+        } catch (Exception e) { return defaultValue; }
+    }
+
+    public boolean getInput(boolean defaultValue) {
+        try {
+            if (!input.hasNextLine()) return defaultValue;
+            String s = input.nextLine().trim();
+            return s.isEmpty() ? defaultValue : Boolean.parseBoolean(s);
+        } catch (Exception e) { return defaultValue; }
+    }
+
+    public Date getInput(Date defaultValue) {
+        if (!input.hasNextLine()) return defaultValue;
+        String s = input.nextLine().trim();
+        if (s.isEmpty()) return defaultValue;
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-        Date d;
         try {
-            d = formatter.parse(dateInString);
+            return formatter.parse(s);
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            return defaultValue;
         }
-        return d;
-    }
-    public LocalDate getInput(LocalDate date) {
-        String s = input.nextLine();
-        if (s.trim().isEmpty()) {
-            return date;
-        }
-        Scanner in2 = new Scanner(s);
-//        String dateInString = "7-Jun-2013";
-        String dateInString = in2.nextLine();
-        // see https://www.baeldung.com/java-string-to-date
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-        LocalDate d;
-        try {
-            d = LocalDate.parse(s, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
-        } catch (DateTimeParseException e) {
-            throw e;
-        }
-        return d;
     }
 
-    @Override
-    public String toString() {
-        return "Editable{" +
-//                "id=" + id +
-                '}';
+    public LocalDate getInput(LocalDate defaultValue) {
+        if (!input.hasNextLine()) return defaultValue;
+        String s = input.nextLine().trim();
+        if (s.isEmpty()) return defaultValue;
+
+        try {
+            return LocalDate.parse(s, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+        } catch (Exception e) {
+            return defaultValue;
+        }
     }
 }

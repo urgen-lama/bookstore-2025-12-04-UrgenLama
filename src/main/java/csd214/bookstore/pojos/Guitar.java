@@ -1,12 +1,10 @@
 package csd214.bookstore.pojos;
 
-import java.util.Scanner;
-
 public class Guitar extends MusicalInstrument{
     private int stringCount;
 
     @Override
-    public void initialize(Scanner input) {
+    public void initialize() {
         super.initialize();
         System.out.println("Enter number of strings:");
         try {
