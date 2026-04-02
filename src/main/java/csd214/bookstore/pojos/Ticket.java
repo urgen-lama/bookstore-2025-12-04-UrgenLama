@@ -1,8 +1,20 @@
 package csd214.bookstore.pojos;
 
+import java.util.Scanner;
+
 public class Ticket extends Product {
     public String description = "";
     public double price = 0.0;
+
+    @Override
+    public void initialize(Scanner input) {
+        this.initialize();
+    }
+
+    @Override
+    public void edit(Scanner input) {
+        this.edit();
+    }
 
     @Override
     public void sellItem() {
@@ -16,6 +28,7 @@ public class Ticket extends Product {
 
     @Override
     public void initialize() {
+        super.initialize();
         System.out.println("Enter Description:");
         this.description = getInput("Ticket");
 
@@ -25,6 +38,7 @@ public class Ticket extends Product {
 
     @Override
     public void edit() {
+        super.edit();
         System.out.println("Edit Description [" + this.description + "]:");
         this.description = getInput(this.description);
 
@@ -34,6 +48,6 @@ public class Ticket extends Product {
 
     @Override
     public String toString() {
-        return "Ticket{desc='" + description + "', price=" + price + "}";
+        return "Ticket{desc='" + description + "', price=" + price + "} " + super.toString();
     }
 }
